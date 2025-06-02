@@ -9,9 +9,11 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 
 class DetailsFragment : Fragment() {
     private var places: FavoritePlaces? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -22,13 +24,19 @@ class DetailsFragment : Fragment() {
         view.isClickable = true
         view.isFocusable = true
         places = arguments?.getParcelable("places") as? FavoritePlaces
-        if (places != null) {
 
+        if (places != null) {
             val nameTextView = view.findViewById<TextView>(R.id.nameTextView)
             nameTextView.text = places?.name
 
             val placeImageView = view.findViewById<ImageView>(R.id.placeImageView)
-            places?.imageResourceId?.let { placeImageView.setImageResource(it) }
+
+
+            if (!places?.imageUrl.isNullOrEmpty()) {
+                Glide.with(requireContext())
+                    .load(places?.imageUrl)
+                    .into(placeImageView)
+            }
 
             val descriptionTextView = view.findViewById<TextView>(R.id.descriptionTextView)
             descriptionTextView.text = places?.description
@@ -44,8 +52,7 @@ class DetailsFragment : Fragment() {
                 activity?.supportFragmentManager?.popBackStack()
             }
         } else {
-            Log.e("DetailsFragment", " Inga data tillgängliga för visning ")
-
+            Log.e("DetailsFragment", "Inga data tillgängliga för visning")
         }
 
         return view
@@ -60,7 +67,4 @@ class DetailsFragment : Fragment() {
             return fragment
         }
     }
-
 }
-
-

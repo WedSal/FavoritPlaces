@@ -1,22 +1,19 @@
 package com.example.favoriteplaces
 
-
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
 import androidx.recyclerview.widget.RecyclerView
-
+import com.bumptech.glide.Glide
 
 class FavoriteAdapter(
-   private val places: List<FavoritePlaces>,
-   private val onPlaceClickListener: OnPlaceClickListener) :
-    RecyclerView.Adapter<FavoriteAdapter.PlaceViewHolder>() {
+    private val places: List<FavoritePlaces>,
+    private val onPlaceClickListener: OnPlaceClickListener
+) : RecyclerView.Adapter<FavoriteAdapter.PlaceViewHolder>() {
 
-    inner class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
-        View.OnClickListener {
+    inner class PlaceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
         val imageView: ImageView = itemView.findViewById(R.id.imageView)
         val titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
 
@@ -32,33 +29,20 @@ class FavoriteAdapter(
         }
     }
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_place, parent, false)
         return PlaceViewHolder(view)
-
     }
 
+    override fun getItemCount(): Int = places.size
 
+    override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
+        val place = places[position]
+        holder.titleTextView.text = place.name
 
-        override fun getItemCount(): Int {
-            return places.size + 1
-
-        }
-
-        override fun onBindViewHolder(holder: PlaceViewHolder, position: Int) {
-                val place = places[position]
-                holder.imageView.setImageResource(place.imageResourceId)
-                holder.titleTextView.text = place.name
-
-
-            }
-
-
-        }
-
-
-
-
+        Glide.with(holder.itemView.context)
+            .load(place.imageUrl)
+            .into(holder.imageView)
+    }
+}

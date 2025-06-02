@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "875513996826",
-    "project_id": "favoriteplaces-54973",
-    "storage_bucket": "favoriteplaces-54973.appspot.com"
+    "project_number": "448695391779",
+    "project_id": "favoriteplace-7387b",
+    "storage_bucket": "favoriteplace-7387b.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:875513996826:android:31be4c65a9cb0e8c0213a3",
+        "mobilesdk_app_id": "1:448695391779:android:ab2831efab8395064d4396",
         "android_client_info": {
           "package_name": "com.example.favoriteplaces"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": ".."
+          "current_key": "AIzaSyCmhjRB3ci6Xt9YhmdfHarIqkzPLmuXJy8"
         }
       ],
       "services": {

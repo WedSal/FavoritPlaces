@@ -9,7 +9,7 @@ class FavoritePlaces (
     var description: String,
     var adress: String,
     var openingsHours: String,
-    var imageResourceId: Int,
+    var imageUrl: String? = null,
 
 
     ) : Parcelable {
@@ -18,7 +18,8 @@ class FavoritePlaces (
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
-        parcel.readInt()
+        parcel.readString()!!,
+
     ) {
     }
 
@@ -27,7 +28,7 @@ class FavoritePlaces (
         parcel.writeString(description)
         parcel.writeString(adress)
         parcel.writeString(openingsHours)
-        parcel.writeInt(imageResourceId)
+        parcel.writeString(imageUrl)
     }
 
     override fun describeContents(): Int {
